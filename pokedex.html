@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="pokedex.css" />
+  <style>
+    /* Estilos básicos de exemplo. Remova se você já tem um CSS separado */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f00;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="pokedex">
+    <div id="left">
+      <div id="logo"></div>
+      <div id="bg_curve1_left"></div>
+      <div id="bg_curve2_left"></div>
+      <div id="curve1_left">
+        <div id="buttonGlass">
+          <div id="reflect"></div>
+        </div>
+        <div id="miniButtonGlass1"></div>
+        <div id="miniButtonGlass2"></div>
+        <div id="miniButtonGlass3"></div>
+      </div>
+      <div id="curve2_left">
+        <div id="junction">
+          <div id="junction1"></div>
+          <div id="junction2"></div>
+        </div>
+      </div>
+      <div id="screen">
+        <div id="topPicture">
+          <div id="buttontopPicture1"></div>
+          <div id="buttontopPicture2"></div>
+        </div>
+        <div id="picture">
+          <img id="pokemonImage" title="Click e altere imagem" height="170" />
+        </div>
+        <div id="buttonbottomPicture"></div>
+        <div id="speakers">
+          <div class="sp"></div>
+          <div class="sp"></div>
+          <div class="sp"></div>
+          <div class="sp"></div>
+        </div>
+      </div>
+      <div id="bigbluebutton"></div>
+      <div id="barbutton1"></div>
+      <div id="barbutton2"></div>
+      <div id="cross">
+        <div id="leftcross">
+          <div id="leftT"></div>
+        </div>
+        <div id="topcross">
+          <div id="upT"></div>
+        </div>
+        <div id="rightcross">
+          <div id="rightT"></div>
+        </div>
+        <div id="midcross">
+          <div id="midCircle"></div>
+        </div>
+        <div id="botcross">
+          <div id="downT"></div>
+        </div>
+      </div>
+    </div>
+    <div id="right">
+      <div id="stats">
+        <strong>Name:</strong> <span id="pokemonName"></span><br />
+      </div>
+        <div id="estilob">
+        <button onclick = "pikachu()" >Pikachu</button>
+        <button onclick ="Charizard()">Charizard</button>
+        <button onclick ="Bulbasaur()">Bulbasaur</button>
+        <button onclick ="Squirtle()">Squirtle</button>
+        <button onclick ="Eevee()">Eevee</button>
+        <button onclick="Gengar()">Gengar</button>
+        <button onclick="Lucario()">Lucario</button>
+        <button onclick="Snorlax()">Snorlax</button>
+        <button onclick="Greninja()">Greninja</button>
+        <button onclick="Jigglypuff()">Jigglypuff</button>
+        </div>
+
+
+        <script>
+          async function buscarPokemon(nomePokemon) {
+            const resultadoNome = document.getElementById('pokemonName');
+            const resultadoImagem = document.getElementById('pokemonImage');
+        
+            try {
+              const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nomePokemon.toLowerCase()}`);
+              if (!resposta.ok) {
+                throw new Error('Pokémon não encontrado');
+              }
+        
+              const dados = await resposta.json();
+              resultadoNome.textContent = dados.name;
+              pokemonImage.src = dados.sprites.front_default; // Exibe imagem padrão do Pokémon
+        
+
+            } catch (erro) {
+              resultadoNome.textContent = erro.message;
+              pokemonImage.src = '';
+           
+            }
+          }
+        
+          // Funções para cada Pokémon
+          function pikachu() {
+            buscarPokemon('pikachu');
+          }
+        
+          function Charizard() {
+            buscarPokemon('charizard');
+          }
+        
+          function Bulbasaur() {
+            buscarPokemon('bulbasaur');
+          }
+        
+          function Squirtle() {
+            buscarPokemon('squirtle');
+          }
+        
+          function Eevee() {
+            buscarPokemon('eevee');
+          }
+        
+          function Gengar() {
+            buscarPokemon('gengar');
+          }
+        
+          function Lucario() {
+            buscarPokemon('lucario');
+          }
+        
+          function Snorlax() {
+            buscarPokemon('snorlax');
+          }
+        
+          function Greninja() {
+            buscarPokemon('greninja');
+          }
+        
+          function Jigglypuff() {
+            buscarPokemon('jigglypuff');
+          }
+        </script>
